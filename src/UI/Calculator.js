@@ -4,10 +4,22 @@ import Result from '../components/Result';
 import './Calculator.css';
 
 class Calculator extends Component {
+  constructor() {
+    super();
+    this.state = { nightMode: true };
+  }
+  toggleNightMode = () => {
+    this.setState({
+      nightMode: !this.state.nightMode,
+    });
+  };
   render() {
     return (
       <div className='calculator'>
-        <Result />
+        <Result
+          changeHandler={this.toggleNightMode}
+          nightMode={this.state.nightMode}
+        />
         <Numpad />
       </div>
     );
