@@ -1,4 +1,19 @@
+.text-right {
+  text-align: right;
+}
+
 .result {
-  flex: 1;
+  flex: 1 1 auto;
   background-color: green;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.result-toggle {
+  align-self: flex-start;
+}
+.result-operation {
+}
+.result-display {
 }

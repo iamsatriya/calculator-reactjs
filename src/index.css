@@ -5,9 +5,7 @@ html {
 }
 
 body {
-  font-size: 8em;
-  padding: 0;
-  margin: 0;
+  font-size: 5em;
   box-sizing: border-box;
 }
 *,
@@ -15,4 +13,6 @@ body {
 *::before {
   /* font-family: 'Rubik', sans-serif; */
   font-family: 'Dongle', sans-serif;
+  padding: 0;
+  margin: 0;
 }
