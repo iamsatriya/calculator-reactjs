@@ -4,10 +4,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.app-night {
-  background-color: #56595f;
-}
-.app-day {
   background-color: #e3e8ec;
 }
