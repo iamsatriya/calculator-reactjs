@@ -4,11 +4,11 @@
 
 .result {
   flex: 1 1 auto;
-  background-color: green;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: all 0.25s ease-in;
 }
 .result-toggle {
   align-self: flex-start;
@@ -31,7 +31,7 @@
   width: 0;
 }
 .toggle-checkbox:checked ~ .control {
-  background-color: #555b60;
+  background-color: #191c21;
 }
 .toggle-checkbox:checked ~ .control::after {
   left: calc(
@@ -60,7 +60,6 @@
   top: var(--toggle-gap);
   width: var(--toggle-control-size);
   height: var(--toggle-control-size);
-
   background-color: #555b60;
   border-radius: 50%;
   transition: all 0.25s ease-in;

@@ -6,7 +6,9 @@ import './Result.css';
 class Result extends Component {
   render() {
     return (
-      <div className='result'>
+      <div
+        className='result'
+        style={{ backgroundColor: this.props.nightMode ? '#555B60' : '#FFF' }}>
         <div className='result-toggle'>
           <label htmlFor='toggle-checkbox' className='toggle-control'>
             <input
