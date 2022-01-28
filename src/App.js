@@ -1,12 +1,20 @@
 import './App.css';
+import React, { Component } from 'react';
 import Calculator from './UI/Calculator';
 
-function App() {
-  return (
-    <div className='app'>
-      <Calculator />
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = { nightMode: false };
+  }
+  render() {
+    return (
+      <div
+        className={'app ' + (this.state.nightMode ? 'app-night' : 'app-day')}>
+        <Calculator />
+      </div>
+    );
+  }
 }
-// TANDA BAGI ÷
+
 export default App;

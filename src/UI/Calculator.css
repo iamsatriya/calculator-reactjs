@@ -1,0 +1,10 @@
+.calculator {
+  width: 45rem;
+  height: 70rem;
+  background-color: red;
+
+  border-radius: 4rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}

@@ -1,0 +1,10 @@
+.button {
+  border: 1px solid red;
+  background-color: khaki;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button span {
+}

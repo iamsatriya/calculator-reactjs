@@ -1,0 +1,7 @@
+.numpad {
+  flex: 2;
+  background-color: hotpink;
+
+  display: grid;
+  grid: repeat(4, 1fr) / repeat(4, 1fr);
+}
