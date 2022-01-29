@@ -31,8 +31,10 @@ class Result extends Component {
           </label>
         </div>
         <div>
-          <p className='text-right result-operation'>operation</p>
-          <p className='text-right result-display'>Result</p>
+          <p className='text-right result-operation'>
+            {this.props.data.operation}
+          </p>
+          <p className='text-right result-display'>{this.props.data.result}</p>
         </div>
       </div>
     );
