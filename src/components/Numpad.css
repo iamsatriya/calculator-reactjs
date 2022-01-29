@@ -1,12 +1,7 @@
 .numpad {
-  background-color: hotpink;
-
+  flex: 1 1;
+  padding: 1rem;
   display: grid;
   grid: repeat(4, 1fr) / repeat(4, 1fr);
-}
-
-@media (min-width: 600px) {
-  .numpad {
-    flex: 1 1 auto;
-  }
+  transition: background-color var(--transition-time) var(--transition-timing);
 }

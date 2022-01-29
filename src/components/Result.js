@@ -8,12 +8,14 @@ class Result extends Component {
     return (
       <div
         className='result'
-        style={{ backgroundColor: this.props.nightMode ? '#555B60' : '#FFF' }}>
+        style={{
+          backgroundColor: this.props.theme.nightMode ? '#555B60' : '#FFF',
+        }}>
         <div className='result-toggle'>
           <label htmlFor='toggle-checkbox' className='toggle-control'>
             <input
-              checked={this.props.nightMode}
-              onChange={this.props.changeHandler}
+              checked={this.props.theme.nightMode}
+              onChange={this.props.handler.changeHandler}
               id='toggle-checkbox'
               type='checkbox'
               className='toggle-checkbox'
@@ -21,13 +23,11 @@ class Result extends Component {
             <span
               className='control'
               style={{
-                backgroundImage: this.props.nightMode
+                backgroundImage: this.props.theme.nightMode
                   ? `url(${NightIcon})`
                   : `url(${DayIcon})`,
-                backgroundPositionX: this.props.nightMode ? '20%' : '80%',
-              }}>
-              {/* <img src={NightIcon} alt='N' /> */}
-            </span>
+                backgroundPositionX: this.props.theme.nightMode ? '20%' : '80%',
+              }}></span>
           </label>
         </div>
         <div>

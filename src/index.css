@@ -6,6 +6,8 @@ html {
   --color-grey: #555b60;
   --color-dark-grey: #191c21;
   --color-white: #e3e8ec;
+  --color-button-night-hover: #464c50;
+  --color-button-day-hover: #cdd3d8;
   --toggle-width: 8rem;
   --toggle-height: 4rem;
   --toggle-gap: 5px;
@@ -15,6 +17,8 @@ html {
   --toggle-background-size: calc(
     var(--toggle-control-size) - var(--toggle-gap) - var(--toggle-gap)
   );
+  --transition-time: 0.2s;
+  --transition-timing: ease-in;
 }
 
 body {

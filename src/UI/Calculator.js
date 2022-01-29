@@ -17,10 +17,16 @@ class Calculator extends Component {
     return (
       <div className='calculator'>
         <Result
-          changeHandler={this.toggleNightMode}
-          nightMode={this.state.nightMode}
+          theme={{ nightMode: this.state.nightMode }}
+          handler={{ changeHandler: this.toggleNightMode }}
+          data={{}}
         />
-        <Numpad />
+        <Numpad
+          // nightMode={this.state.nightMode}
+          theme={{ nightMode: this.state.nightMode }}
+          handler={{ changeHandler: this.toggleNightMode }}
+          data={{}}
+        />
       </div>
     );
   }

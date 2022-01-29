@@ -3,12 +3,21 @@
 }
 
 .result {
-  flex: 1 1 auto;
+  flex: 1 1;
   padding: 2rem;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: all 0.25s ease-in;
+  transition: all var(--transition-time) var(--transition-timing);
+}
+.result::after {
+  content: '';
+  position: absolute;
+  left: 10%;
+  bottom: 0;
+  width: 80%;
+  border-bottom: 2px solid var(--color-primary);
 }
 .result-toggle {
   align-self: flex-start;
@@ -41,8 +50,7 @@
   width: var(--toggle-width);
   border-radius: 2rem;
   background-color: var(--color-primary);
-  transition: background-color 0.25s ease-in;
-  transition: all 0.25s ease-in;
+  transition: all var(--transition-time) var(--transition-timing);
   background-size: --toggle-background-size;
   background-repeat: no-repeat;
   background-position: 20% 50%;
@@ -56,7 +64,7 @@
   height: var(--toggle-control-size);
   background-color: var(--color-grey);
   border-radius: 50%;
-  transition: all 0.25s ease-in;
+  transition: all var(--transition-time) var(--transition-timing);
 }
 .result-operation {
 }

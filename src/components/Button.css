@@ -1,10 +1,51 @@
 .button {
-  border: 1px solid red;
-  background-color: khaki;
-
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.button span {
+
+.button button {
+  display: block;
+  width: 6rem;
+  height: 6rem;
+  margin: 2px;
+  font-size: 3rem;
+  border: none;
+  border-radius: 100%;
+  transition: all var(--transition-time) var(--transition-timing);
+}
+.night:hover {
+  background-color: var(--color-button-night-hover);
+}
+.day:hover {
+  background-color: var(--color-button-day-hover);
+}
+
+.operator-night {
+  background-color: #6c6865;
+  color: var(--color-primary);
+}
+.operator-day {
+  background-color: #e2e6e9;
+  color: var(--color-primary);
+}
+.nonoperator-night {
+  background-color: var(--color-grey);
+  color: #fff;
+}
+.nonoperator-day {
+  background-color: #fff;
+  color: var(--color-grey);
+}
+
+.button button:hover {
+  cursor: pointer;
+}
+
+@media (min-width: 600px) {
+  .button button {
+    width: 8rem;
+    height: 8rem;
+    margin: 0;
+  }
 }
