@@ -2,6 +2,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap');
 html {
   font-size: 62.5%;
+  --color-primary: #f7a84e;
+  --color-grey: #555b60;
+  --color-dark-grey: #191c21;
+  --color-white: #e3e8ec;
+  --toggle-width: 8rem;
+  --toggle-height: 4rem;
+  --toggle-gap: 5px;
+  --toggle-control-size: calc(
+    var(--toggle-height) - var(--toggle-gap) - var(--toggle-gap)
+  );
+  --toggle-background-size: calc(
+    var(--toggle-control-size) - var(--toggle-gap) - var(--toggle-gap)
+  );
 }
 
 body {

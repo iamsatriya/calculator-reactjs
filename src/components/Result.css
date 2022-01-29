@@ -17,12 +17,6 @@
   display: block;
   position: relative;
   cursor: pointer;
-  --toggle-width: 8rem;
-  --toggle-height: 4rem;
-  --toggle-gap: 5px;
-  --toggle-control-size: calc(
-    var(--toggle-height) - var(--toggle-gap) - var(--toggle-gap)
-  );
 }
 .toggle-checkbox {
   position: absolute;
@@ -31,13 +25,13 @@
   width: 0;
 }
 .toggle-checkbox:checked ~ .control {
-  background-color: #191c21;
+  background-color: var(--color-dark-grey);
 }
 .toggle-checkbox:checked ~ .control::after {
   left: calc(
     var(--toggle-width) - var(--toggle-control-size) - var(--toggle-gap)
   );
-  background-color: #f7a84e;
+  background-color: var(--color-primary);
 }
 .control {
   position: absolute;
@@ -46,10 +40,10 @@
   height: var(--toggle-height);
   width: var(--toggle-width);
   border-radius: 2rem;
-  background-color: #f7a84e;
+  background-color: var(--color-primary);
   transition: background-color 0.25s ease-in;
   transition: all 0.25s ease-in;
-  background-size: calc(var(--toggle-control-size) - var(--toggle-gap * 2));
+  background-size: --toggle-background-size;
   background-repeat: no-repeat;
   background-position: 20% 50%;
 }
@@ -60,7 +54,7 @@
   top: var(--toggle-gap);
   width: var(--toggle-control-size);
   height: var(--toggle-control-size);
-  background-color: #555b60;
+  background-color: var(--color-grey);
   border-radius: 50%;
   transition: all 0.25s ease-in;
 }
