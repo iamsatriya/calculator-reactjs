@@ -41,6 +41,7 @@
     var(--toggle-width) - var(--toggle-control-size) - var(--toggle-gap)
   );
   background-color: var(--color-primary);
+  animation: 0.25s ease-out 0s rightToLeft;
 }
 .control {
   position: absolute;
@@ -50,11 +51,12 @@
   width: var(--toggle-width);
   border-radius: 2rem;
   background-color: var(--color-primary);
-  transition: all var(--transition-time) var(--transition-timing);
   background-size: --toggle-background-size;
   background-repeat: no-repeat;
   background-position: 20% 50%;
+  animation: 0.75s ease-out 0.15s bouncing;
 }
+
 .control::after {
   content: '';
   position: absolute;
@@ -65,13 +67,67 @@
   background-color: var(--color-grey);
   border-radius: 50%;
   transition: all var(--transition-time) var(--transition-timing);
+  animation: 0.25s ease-out 0s leftToRight;
+}
+
+@keyframes bouncing {
+  from {
+    background-position-y: 50%;
+  }
+  25% {
+    background-position-y: 0%;
+  }
+  50% {
+    background-position-y: 50%;
+  }
+  75% {
+    background-position-y: 30%;
+  }
+  to {
+    background-position-y: 50%;
+  }
+}
+
+@keyframes leftToRight {
+  from {
+    left: calc(
+      var(--toggle-width) - var(--toggle-control-size) - var(--toggle-gap)
+    );
+    background-color: var(--color-primary);
+  }
+  to {
+    left: var(--toggle-gap);
+    background-color: var(--color-grey);
+  }
+}
+
+@keyframes rightToLeft {
+  from {
+    left: var(--toggle-gap);
+    background-color: var(--color-grey);
+  }
+  to {
+    left: calc(
+      var(--toggle-width) - var(--toggle-control-size) - var(--toggle-gap)
+    );
+    background-color: var(--color-primary);
+  }
 }
 
 .result-operation {
-  font-size: 4rem;
+  font-size: 3rem;
   overflow-x: hidden;
 }
 .result-display {
-  font-size: 12rem;
+  font-size: 10rem;
   overflow-x: hidden;
+}
+
+@media (min-width: 600px) {
+  .result-operation {
+    font-size: 4rem;
+  }
+  .result-display {
+    font-size: 12rem;
+  }
 }

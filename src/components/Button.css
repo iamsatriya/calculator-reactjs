@@ -9,7 +9,7 @@
   width: 6rem;
   height: 6rem;
   margin: 2px;
-  font-size: 3rem;
+  font-size: 4rem;
   border: none;
   border-radius: 100%;
   transition: all var(--transition-time) var(--transition-timing);
@@ -24,10 +24,12 @@
 .operator-night {
   background-color: #6c6865;
   color: var(--color-primary);
+  font-weight: 700;
 }
 .operator-day {
   background-color: #e2e6e9;
   color: var(--color-primary);
+  font-weight: 700;
 }
 .nonoperator-night {
   background-color: var(--color-grey);

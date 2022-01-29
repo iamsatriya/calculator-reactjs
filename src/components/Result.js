@@ -21,6 +21,7 @@ class Result extends Component {
               className='toggle-checkbox'
             />
             <span
+              key={'animationkey ' + this.props.theme.nightMode}
               className='control'
               style={{
                 backgroundImage: this.props.theme.nightMode
