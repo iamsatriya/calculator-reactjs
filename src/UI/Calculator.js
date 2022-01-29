@@ -68,6 +68,7 @@ class Calculator extends Component {
     }
   };
   calculateHandler = () => {
+    const errorMsg = ':)';
     const operatorIndex = this.state.data.operation.search(/[x/\-+]/);
     const number1 = this.state.data.operation.slice(0, operatorIndex);
     const number2 = this.state.data.operation.slice(
@@ -75,7 +76,8 @@ class Calculator extends Component {
       this.state.data.operation.length,
     );
     let result = 0;
-    if (operatorIndex === -1 || number1 === '' || number2 === '') result = ':)';
+    if (operatorIndex === -1 || number1 === '' || number2 === '')
+      result = errorMsg;
     else
       switch (this.state.data.operation[operatorIndex]) {
         case '+':
@@ -86,13 +88,15 @@ class Calculator extends Component {
           break;
         case '/':
           result = parseInt(number1) / parseInt(number2);
+          result = result === Infinity ? errorMsg : result;
           break;
         case 'x':
           result = parseInt(number1) * parseInt(number2);
           break;
         default:
-          result = ':)';
+          result = errorMsg;
       }
+    if (result !== errorMsg && result % 1 !== 0) result = result.toFixed(2);
     this.setState((prevState) => ({
       data: {
         ...prevState.data,
