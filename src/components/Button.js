@@ -23,6 +23,9 @@ class Button extends Component {
     return (
       <div className='button'>
         <button
+          onClick={() =>
+            this.props.handler.clickHandler(this.props.data.number)
+          }
           className={
             this.props.theme.nightMode ? this.renderNight() : this.renderDay()
           }>
