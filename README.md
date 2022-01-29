@@ -30,3 +30,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+## Credit
+
+This design is inspire by [Yusong Shi](https://dribbble.com/jackieshi) from [dribbble](https://dribbble.com/shots/8511065--dailyui-004-Calculator?utm_source=pinterest&utm_campaign=pinterest_shot&utm_content=%23dailyui+%23004+-+Calculator&utm_medium=Social_Share)
