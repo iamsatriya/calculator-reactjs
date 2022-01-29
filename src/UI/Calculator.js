@@ -16,7 +16,6 @@ class Calculator extends Component {
       nightMode: !this.state.nightMode,
     });
   };
-  // buat semua button kecuali =
   operatorHandler = (val) => {
     if (val === 'c') {
       this.setState({
@@ -53,7 +52,6 @@ class Calculator extends Component {
   };
   numberHandler = (val) => {
     if (this.state.data.operation === '0') {
-      // replace
       this.setState((prevState) => ({
         data: {
           ...prevState.data,
@@ -76,7 +74,6 @@ class Calculator extends Component {
       operatorIndex + 1,
       this.state.data.operation.length,
     );
-    console.log(operatorIndex, number1, number2);
     let result = 0;
     if (operatorIndex === -1 || number1 === '' || number2 === '') result = ':)';
     else

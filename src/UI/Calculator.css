@@ -8,6 +8,7 @@
   flex-direction: column;
   overflow: hidden;
   color: var(--color-primary);
+  box-shadow: 0 0 1rem var(--color-dark-grey);
 }
 @media (min-width: 500px) {
   .calculator {
