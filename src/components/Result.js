@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NightIcon from '../assets/moon-fill.svg';
-import DayIcon from '../assets/sun-fill.svg';
+import DayIcon from '../assets/sun-atl.svg';
 import './Result.css';
 
 class Result extends Component {
