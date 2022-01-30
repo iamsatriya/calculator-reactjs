@@ -40,7 +40,7 @@ class Calculator extends Component {
     });
   };
   calculatedOperatorHandler = (val, lastChar) => {
-    if (Number.isNaN(Number(val))) {
+    if (Number.isNaN(Number(lastChar))) {
       this.clearHandler();
     } else {
       this.setState((prevState) => ({
