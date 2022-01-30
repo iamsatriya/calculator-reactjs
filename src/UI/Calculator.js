@@ -38,16 +38,24 @@ class Calculator extends Component {
     });
   };
   operatorHandler = (val) => {
-    if (this.getOperatorIndex() !== -1) return;
-    const lastOperationChar =
+    const lastChar =
       this.state.data.operation[this.state.data.operation.length - 1];
-    if (this.isOperator(lastOperationChar)) {
+    if (
+      this.getOperatorIndex() !== -1 &&
+      !this.isOperator(lastChar) &&
+      !this.state.calculated
+    ) {
+      this.props.popupHandler(true);
+      return;
+    }
+    if (this.isOperator(lastChar)) {
       const lastIndex = this.state.data.operation.length - 1;
       this.setState((prevState) => ({
         data: {
           ...prevState.data,
           operation: prevState.data.operation.slice(0, lastIndex) + val,
         },
+        calculated: false,
       }));
     } else {
       if (this.state.calculated) {
@@ -56,6 +64,7 @@ class Calculator extends Component {
             ...prevState.data,
             operation: prevState.data.result + val,
           },
+          calculated: false,
         }));
       } else {
         this.setState((prevState) => ({
@@ -63,6 +72,7 @@ class Calculator extends Component {
             ...prevState.data,
             operation: prevState.data.operation + val,
           },
+          calculated: false,
         }));
       }
     }
@@ -87,6 +97,7 @@ class Calculator extends Component {
             ...prevState.data,
             operation: prevState.data.operation.slice(0, lastIndex) + val,
           },
+          calculated: false,
         }));
       } else {
         this.setState((prevState) => ({
@@ -94,6 +105,7 @@ class Calculator extends Component {
             ...prevState.data,
             operation: prevState.data.operation + String(val),
           },
+          calculated: false,
         }));
       }
     }
@@ -112,17 +124,17 @@ class Calculator extends Component {
     else
       switch (this.state.data.operation[operatorIndex]) {
         case '+':
-          result = parseInt(number1) + parseInt(number2);
+          result = Number(number1) + Number(number2);
           break;
         case '-':
-          result = parseInt(number1) - parseInt(number2);
+          result = number1 - number2;
           break;
         case '/':
-          result = parseInt(number1) / parseInt(number2);
+          result = number1 / number2;
           result = result === Infinity ? errorMsg : result;
           break;
         case 'x':
-          result = parseInt(number1) * parseInt(number2);
+          result = number1 * number2;
           break;
         default:
           result = errorMsg;
