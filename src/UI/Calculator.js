@@ -39,6 +39,33 @@ class Calculator extends Component {
       calculated: false,
     });
   };
+  calculatedOperatorHandler = (val) => {
+    this.setState((prevState) => ({
+      data: {
+        ...prevState.data,
+        operation: prevState.data.result + val,
+      },
+      calculated: false,
+    }));
+  };
+  uncalculatedOperatorHandler = (val, lastChar) => {
+    if (this.isOperator(lastChar)) {
+      const lastIndex = this.state.data.operation.length - 1;
+      this.setState((prevState) => ({
+        data: {
+          ...prevState.data,
+          operation: prevState.data.operation.slice(0, lastIndex) + val,
+        },
+      }));
+    } else {
+      this.setState((prevState) => ({
+        data: {
+          ...prevState.data,
+          operation: prevState.data.operation + val,
+        },
+      }));
+    }
+  };
   operatorHandler = (val) => {
     const lastChar =
       this.state.data.operation[this.state.data.operation.length - 1];
@@ -50,67 +77,42 @@ class Calculator extends Component {
       this.props.popupHandler(true);
       return;
     }
-    if (this.isOperator(lastChar)) {
-      const lastIndex = this.state.data.operation.length - 1;
+    if (this.state.calculated) this.calculatedOperatorHandler(val);
+    else this.uncalculatedOperatorHandler(val, lastChar);
+  };
+  calculatedNumberHandler = (val) => {
+    this.setState(() => ({
+      data: {
+        result: '0',
+        operation: String(val),
+      },
+      calculated: false,
+    }));
+  };
+  uncalculatedNumberHandler = (val) => {
+    const lastIndex = this.state.data.operation.length - 1;
+    if (
+      this.state.data.operation[lastIndex] === '0' &&
+      this.state.data.operation.length === 1
+    ) {
       this.setState((prevState) => ({
         data: {
           ...prevState.data,
-          operation: prevState.data.operation.slice(0, lastIndex) + val,
+          operation: String(val),
         },
-        calculated: false,
       }));
     } else {
-      if (this.state.calculated) {
-        this.setState((prevState) => ({
-          data: {
-            ...prevState.data,
-            operation: prevState.data.result + val,
-          },
-          calculated: false,
-        }));
-      } else {
-        this.setState((prevState) => ({
-          data: {
-            ...prevState.data,
-            operation: prevState.data.operation + val,
-          },
-          calculated: false,
-        }));
-      }
+      this.setState((prevState) => ({
+        data: {
+          ...prevState.data,
+          operation: prevState.data.operation + String(val),
+        },
+      }));
     }
   };
   numberHandler = (val) => {
-    const lastIndex = this.state.data.operation.length - 1;
-    if (
-      this.state.calculated &&
-      !this.isOperator(this.state.data.operation[lastIndex])
-    ) {
-      this.setState({
-        data: {
-          operation: val,
-          result: '0',
-        },
-        calculated: false,
-      });
-    } else {
-      if (this.state.data.operation[lastIndex] === '0') {
-        this.setState((prevState) => ({
-          data: {
-            ...prevState.data,
-            operation: prevState.data.operation.slice(0, lastIndex) + val,
-          },
-          calculated: false,
-        }));
-      } else {
-        this.setState((prevState) => ({
-          data: {
-            ...prevState.data,
-            operation: prevState.data.operation + String(val),
-          },
-          calculated: false,
-        }));
-      }
-    }
+    if (this.state.calculated) this.calculatedNumberHandler(val);
+    else this.uncalculatedNumberHandler(val);
   };
   calculateHandler = () => {
     const errorMsg = ':)';
@@ -133,7 +135,8 @@ class Calculator extends Component {
           break;
         case '/':
           result = Number(number1) / Number(number2);
-          result = result === Infinity ? errorMsg : result;
+          result =
+            result === Infinity || result === -Infinity ? errorMsg : result;
           break;
         case 'x':
           result = Number(number1) * Number(number2);
