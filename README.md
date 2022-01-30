@@ -7,13 +7,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Main Features
 
-Perform basic calculation of 2 number with operator of `+ - x /`
+Perform basic calculation of 2 number with operator of `+ - x /`. There is an extra button to clear out the screen using `c` button.
 
 ### Limitation
 
 - This calculator will display error message if any operation that might make an error calculation such as `2 / 0` (in JS it will return Infinity) or `-2 / 0` (in JS it will return -Infinity).
 - Calculation with large amount of number that can cause overflow will be hidden in the screen, but still can be calculate within the `number` data type boundary.
-- You can only perform single calculation, and the result will displayed immidiately after you press equal sign button `=`, and you need to clear it out after that with button `c` for the next calculation.
+- You can only perform single calculation, single calculation means you can only enter 2 number and 1 operator to do correct calculation, and the result will displayed immidiately after you press equal sign button `=`
+- After you do calculation, you can continue to calculate based on previous result, or simply make a new calculation using enter new number to be calculated.
 
 ## Additional Features
 
