@@ -94,29 +94,44 @@ class Calculator extends Component {
     }));
   };
   uncalculatedNumberHandler = (val) => {
-    const lastIndex = this.state.data.operation.length - 1;
-    if (
-      this.state.data.operation[lastIndex] === '0' &&
-      this.state.data.operation.length === 1
-    ) {
+    this.setState((prevState) => ({
+      data: {
+        ...prevState.data,
+        operation: prevState.data.operation + String(val),
+      },
+    }));
+  };
+  numberHandler = (val) => {
+    const lastChar =
+      this.state.data.operation[this.state.data.operation.length - 1];
+    const operationLength = this.state.data.operation.length;
+    const lastNdChar =
+      this.state.data.operation[this.state.data.operation.length - 2];
+    const firstNumberCondition = lastChar === '0' && operationLength === 1;
+    const secondNumberCondition =
+      lastChar === '0' &&
+      this.getOperatorIndex() !== -1 &&
+      this.isOperator(lastNdChar);
+    if (firstNumberCondition) {
       this.setState((prevState) => ({
         data: {
           ...prevState.data,
           operation: String(val),
         },
       }));
-    } else {
+    } else if (secondNumberCondition) {
       this.setState((prevState) => ({
         data: {
           ...prevState.data,
-          operation: prevState.data.operation + String(val),
+          operation:
+            prevState.data.operation.slice(0, operationLength - 1) +
+            String(val),
         },
       }));
+    } else {
+      if (this.state.calculated) this.calculatedNumberHandler(val);
+      else this.uncalculatedNumberHandler(val);
     }
-  };
-  numberHandler = (val) => {
-    if (this.state.calculated) this.calculatedNumberHandler(val);
-    else this.uncalculatedNumberHandler(val);
   };
   calculateHandler = () => {
     const errorMsg = ':)';
