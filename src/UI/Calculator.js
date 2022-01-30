@@ -51,11 +51,12 @@ class Calculator extends Component {
     }
   };
   numberHandler = (val) => {
-    if (this.state.data.operation === '0') {
+    const lastIndex = this.state.data.operation.length - 1;
+    if (this.state.data.operation[lastIndex] === '0') {
       this.setState((prevState) => ({
         data: {
           ...prevState.data,
-          operation: val,
+          operation: prevState.data.operation.slice(0, lastIndex) + val,
         },
       }));
     } else {
