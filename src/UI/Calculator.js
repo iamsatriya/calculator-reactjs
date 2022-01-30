@@ -12,14 +12,17 @@ class Calculator extends Component {
       calculated: false,
     };
   }
-  isOperator(lastChar) {
+  isOperator = (lastChar) => {
     return (
       lastChar === '+' ||
       lastChar === '-' ||
       lastChar === '/' ||
       lastChar === 'x'
     );
-  }
+  };
+  getOperatorIndex = () => {
+    return this.state.data.operation.search(/[x/\-+]/);
+  };
   toggleNightMode = () => {
     this.setState({
       nightMode: !this.state.nightMode,
@@ -35,6 +38,7 @@ class Calculator extends Component {
     });
   };
   operatorHandler = (val) => {
+    if (this.getOperatorIndex() !== -1) return;
     const lastOperationChar =
       this.state.data.operation[this.state.data.operation.length - 1];
     if (this.isOperator(lastOperationChar)) {
@@ -52,7 +56,6 @@ class Calculator extends Component {
             ...prevState.data,
             operation: prevState.data.result + val,
           },
-          // calculated: false,
         }));
       } else {
         this.setState((prevState) => ({
@@ -97,7 +100,7 @@ class Calculator extends Component {
   };
   calculateHandler = () => {
     const errorMsg = ':)';
-    const operatorIndex = this.state.data.operation.search(/[x/\-+]/);
+    const operatorIndex = this.getOperatorIndex();
     const number1 = this.state.data.operation.slice(0, operatorIndex);
     const number2 = this.state.data.operation.slice(
       operatorIndex + 1,
