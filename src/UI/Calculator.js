@@ -9,36 +9,50 @@ class Calculator extends Component {
     this.state = {
       nightMode: true,
       data: { operation: '0', result: '0' },
+      calculated: false,
     };
+  }
+  isOperator(lastChar) {
+    return (
+      lastChar === '+' ||
+      lastChar === '-' ||
+      lastChar === '/' ||
+      lastChar === 'x'
+    );
   }
   toggleNightMode = () => {
     this.setState({
       nightMode: !this.state.nightMode,
     });
   };
+  clearHandler = () => {
+    this.setState({
+      data: {
+        operation: '0',
+        result: '0',
+      },
+      calculated: false,
+    });
+  };
   operatorHandler = (val) => {
-    if (val === 'c') {
-      this.setState({
+    const lastOperationChar =
+      this.state.data.operation[this.state.data.operation.length - 1];
+    if (this.isOperator(lastOperationChar)) {
+      const lastIndex = this.state.data.operation.length - 1;
+      this.setState((prevState) => ({
         data: {
-          operation: '0',
-          result: '0',
+          ...prevState.data,
+          operation: prevState.data.operation.slice(0, lastIndex) + val,
         },
-      });
+      }));
     } else {
-      const lastOperationChar =
-        this.state.data.operation[this.state.data.operation.length - 1];
-      if (
-        lastOperationChar === '-' ||
-        lastOperationChar === '/' ||
-        lastOperationChar === 'x' ||
-        lastOperationChar === ''
-      ) {
-        const lastIndex = this.state.data.operation.length - 1;
+      if (this.state.calculated) {
         this.setState((prevState) => ({
           data: {
             ...prevState.data,
-            operation: prevState.data.operation.slice(0, lastIndex) + val,
+            operation: prevState.data.result + val,
           },
+          // calculated: false,
         }));
       } else {
         this.setState((prevState) => ({
@@ -52,20 +66,33 @@ class Calculator extends Component {
   };
   numberHandler = (val) => {
     const lastIndex = this.state.data.operation.length - 1;
-    if (this.state.data.operation[lastIndex] === '0') {
-      this.setState((prevState) => ({
+    if (
+      this.state.calculated &&
+      !this.isOperator(this.state.data.operation[lastIndex])
+    ) {
+      this.setState({
         data: {
-          ...prevState.data,
-          operation: prevState.data.operation.slice(0, lastIndex) + val,
+          operation: val,
+          result: '0',
         },
-      }));
+        calculated: false,
+      });
     } else {
-      this.setState((prevState) => ({
-        data: {
-          ...prevState.data,
-          operation: prevState.data.operation + String(val),
-        },
-      }));
+      if (this.state.data.operation[lastIndex] === '0') {
+        this.setState((prevState) => ({
+          data: {
+            ...prevState.data,
+            operation: prevState.data.operation.slice(0, lastIndex) + val,
+          },
+        }));
+      } else {
+        this.setState((prevState) => ({
+          data: {
+            ...prevState.data,
+            operation: prevState.data.operation + String(val),
+          },
+        }));
+      }
     }
   };
   calculateHandler = () => {
@@ -103,6 +130,7 @@ class Calculator extends Component {
         ...prevState.data,
         result,
       },
+      calculated: true,
     }));
   };
   render() {
@@ -122,6 +150,7 @@ class Calculator extends Component {
             operatorHandler: this.operatorHandler,
             numberHandler: this.numberHandler,
             calculateHandler: this.calculateHandler,
+            clearHandler: this.clearHandler,
           }}
           data={{
             operation: this.state.data.operation,

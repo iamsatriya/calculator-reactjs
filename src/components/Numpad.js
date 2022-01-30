@@ -75,7 +75,7 @@ class Numpad extends Component {
         <Button
           data={{ number: 'c' }}
           theme={{ nightMode: this.props.theme.nightMode }}
-          handler={{ clickHandler: this.props.handler.operatorHandler }}
+          handler={{ clickHandler: this.props.handler.clearHandler }}
         />
         <Button
           data={{ number: 0 }}
