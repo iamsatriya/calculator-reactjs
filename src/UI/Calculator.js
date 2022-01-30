@@ -81,7 +81,10 @@ class Calculator extends Component {
       this.props.popupHandler(true);
       return;
     }
-    if (this.state.calculated) this.calculatedOperatorHandler(val, lastChar);
+    const lastResultChar =
+      this.state.data.result[this.state.data.result.length - 1];
+    if (this.state.calculated)
+      this.calculatedOperatorHandler(val, lastResultChar);
     else this.uncalculatedOperatorHandler(val, lastChar);
   };
   calculatedNumberHandler = (val) => {
