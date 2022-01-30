@@ -21,7 +21,9 @@ class Calculator extends Component {
     );
   };
   getOperatorIndex = () => {
-    return this.state.data.operation.search(/[x/\-+]/);
+    let foundIndex = this.state.data.operation.slice(1).search(/[x/\-+]/);
+    foundIndex = foundIndex + (foundIndex === -1 ? 0 : 1);
+    return foundIndex;
   };
   toggleNightMode = () => {
     this.setState({
@@ -40,6 +42,7 @@ class Calculator extends Component {
   operatorHandler = (val) => {
     const lastChar =
       this.state.data.operation[this.state.data.operation.length - 1];
+    console.log(this.getOperatorIndex());
     if (
       this.getOperatorIndex() !== -1 &&
       !this.isOperator(lastChar) &&
@@ -127,14 +130,14 @@ class Calculator extends Component {
           result = Number(number1) + Number(number2);
           break;
         case '-':
-          result = number1 - number2;
+          result = Number(number1) - Number(number2);
           break;
         case '/':
-          result = number1 / number2;
+          result = Number(number1) / Number(number2);
           result = result === Infinity ? errorMsg : result;
           break;
         case 'x':
-          result = number1 * number2;
+          result = Number(number1) * Number(number2);
           break;
         default:
           result = errorMsg;
