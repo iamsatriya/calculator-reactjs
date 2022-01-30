@@ -39,14 +39,18 @@ class Calculator extends Component {
       calculated: false,
     });
   };
-  calculatedOperatorHandler = (val) => {
-    this.setState((prevState) => ({
-      data: {
-        ...prevState.data,
-        operation: prevState.data.result + val,
-      },
-      calculated: false,
-    }));
+  calculatedOperatorHandler = (val, lastChar) => {
+    if (Number.isNaN(Number(val))) {
+      this.clearHandler();
+    } else {
+      this.setState((prevState) => ({
+        data: {
+          ...prevState.data,
+          operation: prevState.data.result + val,
+        },
+        calculated: false,
+      }));
+    }
   };
   uncalculatedOperatorHandler = (val, lastChar) => {
     if (this.isOperator(lastChar)) {
@@ -77,7 +81,7 @@ class Calculator extends Component {
       this.props.popupHandler(true);
       return;
     }
-    if (this.state.calculated) this.calculatedOperatorHandler(val);
+    if (this.state.calculated) this.calculatedOperatorHandler(val, lastChar);
     else this.uncalculatedOperatorHandler(val, lastChar);
   };
   calculatedNumberHandler = (val) => {
