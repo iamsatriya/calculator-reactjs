@@ -42,7 +42,6 @@ class Calculator extends Component {
   operatorHandler = (val) => {
     const lastChar =
       this.state.data.operation[this.state.data.operation.length - 1];
-    console.log(this.getOperatorIndex());
     if (
       this.getOperatorIndex() !== -1 &&
       !this.isOperator(lastChar) &&
