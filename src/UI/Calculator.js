@@ -149,6 +149,7 @@ class Calculator extends Component {
           result = errorMsg;
       }
     if (result !== errorMsg && result % 1 !== 0) result = result.toFixed(2);
+    if (String(result).length > 9) result = result.toExponential(5);
     this.setState((prevState) => ({
       data: {
         ...prevState.data,
